@@ -10,15 +10,14 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,
     acquire: dbConfig.pool.acquire,
-    idle: dbConfig.pool.idle
-  }
+    idle: dbConfig.pool.idle,
+  },
 });
+const dbmodel = {};
+dbmodel.Sequelize = Sequelize;
 
-const db = {};
+dbmodel.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
+dbmodel.userLog = require("./User_log.model.js")(sequelize, Sequelize);
+//d.users = require("./")
 
-db.Sequelize = Sequelize;
-db.sequelize = sequelize;
-
-db.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
-
-module.exports = db;
+module.exports = dbmodel;
