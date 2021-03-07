@@ -16,13 +16,12 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const db = require("./app/models");
+const dbmodel = require("./app/models/index");
 //How many models this application uses ?
 //1. Tutorial
 //2. UserLog
 
-
-db.sequelize.sync();
+dbmodel.sequelize.sync();
 // // drop the table if it already exists
 // db.sequelize.sync({ force: true }).then(() => {
 //   console.log("Drop and re-sync db.");
@@ -40,3 +39,9 @@ const PORT = process.env.PORT || 8088;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
+
+// TODO: Add user model and controller
+// user model attributes
+// userid, username, emailaddress, first_name, last_name
+// CRUD for model will be provided by sequilize
+// Add Controller entry point for register user, login user

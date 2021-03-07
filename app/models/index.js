@@ -15,6 +15,7 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 });
 const dbmodel = {};
 dbmodel.Sequelize = Sequelize;
+dbmodel.sequelize = sequelize;
 
 dbmodel.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
 dbmodel.userLog = require("./User_log.model.js")(sequelize, Sequelize);
